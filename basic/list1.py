@@ -21,7 +21,7 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-  return len(filter(lambda w: (w > 2) and (w[:1] == w[-1:]), words))
+  return len(filter(lambda w: ((len(w) >= 2) and (w[:1] == w[-1:])), words))
 
 
 # B. front_x
@@ -32,8 +32,10 @@ def match_ends(words):
 # Hint: this can be done by making 2 lists and sorting each of them
 # before combining them.
 def front_x(words):
-  # +++your code here+++
-  return
+  xs = sorted(filter(lambda w: w[:1] == "x", words))
+  nonxs = sorted(filter(lambda w: w[:1] != "x", words))
+
+  return xs + nonxs
 
 
 
