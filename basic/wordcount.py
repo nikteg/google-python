@@ -39,6 +39,35 @@ print_words() and print_top().
 
 import sys
 
+def read_file(filename):
+  table = {}
+
+  with open(filename, "r") as f:
+    for line in f.readlines():
+      for word in line.split():
+        word = word.lower()
+
+        if word in table:
+          table[word] += 1
+        else:
+          table[word] = 1
+
+  return table
+
+def print_words(filename):
+  data = read_file(filename)
+  words = sorted(data.items(), key=lambda tup: tup[0])
+
+  for word in words:
+    print "{0} {1}".format(word[0], word[1])
+
+def print_top(filename):
+  data = read_file(filename)
+  counts = sorted(data.items(), key=lambda tup: tup[1], reverse=True)
+
+  for count in counts[:20]:
+    print "{0} {1}".format(count[0], count[1])
+
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
